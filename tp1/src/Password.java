@@ -8,7 +8,7 @@ import java.util.Map;
 public class Password {
     /**
      * Hashes the provided password using the SHA-256 algorithm.
-     * 
+     *
      * @param password the password to be hashed
      * @return a hexadecimal string representing the hashed password
      * @throws RuntimeException if the SHA-256 algorithm is not available
@@ -34,20 +34,26 @@ public class Password {
 
     /**
      * Attempts a brute-force attack to find the 6-digit number
-     * 
+     *
      * @param targetHash the target hash to match
      * @return the 6-digit number that matches, or null if no match is found
      */
     public static String bruteForce6Digit(String targetHash) {
 
         // Code here
-
+        for (int i=0; i<999999; i++){
+            String hashtest = hashPassword(targetHash);
+            String format_hashtest = String.format("%06d", hashtest);
+            if (format_hashtest == targetHash){
+                return format_hashtest;
+            }
+        }
         return null;
     }
 
     /**
      * Checks if the given password is strong according to the following criteria:
-     * 
+     *
      * <ul>
      * <li>Minimum length of 12 characters</li>
      * <li>At least one uppercase letter</li>
@@ -55,7 +61,7 @@ public class Password {
      * <li>At least one digit</li>
      * <li>No whitespace characters</li>
      * </ul>
-     * 
+     *
      * @param password the password to check
      * @return true if the password is strong, false otherwise
      */
@@ -89,7 +95,7 @@ public class Password {
      * <li>1 digit</li>
      * <li>1 special character</li>
      * </ul>
-     * 
+     *
      * @param nbCar The desired length of the password (minimum 4).
      * @return A randomly generated password that meets the security criteria.
      */
